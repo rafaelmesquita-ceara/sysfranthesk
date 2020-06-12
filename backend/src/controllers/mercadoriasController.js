@@ -21,8 +21,10 @@ module.exports = {
   async Index(req, res){
     const [count] = await connection('mercadorias').count();
     var mercadorias = await connection('mercadorias').select(['*']);
-    mercadorias.count = count;
-    return res.json(mercadorias);
+    resposta = {
+      count,
+      mercadorias}
+    return res.json(resposta);
   },
 
   async Update(req, res){

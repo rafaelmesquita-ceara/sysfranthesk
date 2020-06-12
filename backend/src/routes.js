@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = express.Router();
-require('dotenv/config')
+require('dotenv/config');
+const verifytoken = require('./services/verifytoken');
 
 //Controllers imports
 const mercadoriasController = require('./controllers/mercadoriasController')
@@ -15,11 +16,16 @@ routes.get('/', (req, res)=> res.json({"APP" : process.env.APP_NAME,
   "State" : process.env.NODE_ENV}));
 
 //Mercadorias
-routes.post('/mercadorias', mercadoriasController.Create);
+routes.post('/mercadorias', verifytoken, mercadoriasController.Create);
 routes.get('/mercadorias', mercadoriasController.Index);
-routes.put('/mercadorias/:id', mercadoriasController.Update);
-routes.delete('/mercadorias/:id', mercadoriasController.Delete);
+routes.put('/mercadorias/:id', verifytoken, mercadoriasController.Update);
+routes.delete('/mercadorias/:id', verifytoken, mercadoriasController.Delete);
 
+//Vendedores
+routes.post('/vendedores', verifytoken, vendedorController.Create);
+routes.get('/vendedores', vendedorController.Index);
+routes.put('/vendedores/:id', verifytoken, vendedorController.Update);
+routes.delete('/vendedores/:id', verifytoken, vendedorController.Delete);
 
 
   
