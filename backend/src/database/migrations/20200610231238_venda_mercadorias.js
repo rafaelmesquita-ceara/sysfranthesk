@@ -7,7 +7,7 @@ exports.up = function(knex) {
     table.integer('fk_mercadoria_id').notNullable();
     table.integer('fk_venda_id').notNullable();
     table.foreign('fk_mercadoria_id').references('id').inTable('mercadorias');
-    table.foreign('fk_venda_id').references('id').inTable('vendas');
+    table.foreign('fk_venda_id').onDelete('CASCADE').references('id').inTable('vendas');
   });
 };
 

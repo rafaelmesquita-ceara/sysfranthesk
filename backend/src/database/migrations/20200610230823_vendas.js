@@ -4,7 +4,7 @@ exports.up = function(knex) {
 
     table.increments();
     table.dateTime('venda_data').defaultTo(knex.fn.now());
-    table.float('venda_valor').notNullable();
+    table.float('venda_valor');
     table.integer('venda_cartao').notNullable();
     table.integer('fk_venda_vendedor').notNullable();
     table.foreign('fk_venda_vendedor').references('id').inTable('vendedores');

@@ -27,6 +27,12 @@ routes.get('/vendedores', vendedorController.Index);
 routes.put('/vendedores/:id', verifytoken, vendedorController.Update);
 routes.delete('/vendedores/:id', verifytoken, vendedorController.Delete);
 
+//Vendas
+routes.post('/vendas', vendasController.Create);
+routes.get('/vendas', vendasController.Index);
+routes.put('/vendas/:id', verifytoken, vendasController.Update);
+routes.delete('/vendas/:id', verifytoken, vendasController.Delete);
+
 
   
 module.exports = routes;
